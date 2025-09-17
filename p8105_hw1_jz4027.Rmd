@@ -1,0 +1,21 @@
+---
+title: "p8105_hw1_jz4027"
+author: "Charlotte Zhang"
+date: "2025-09-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Problem 1
+##Load needed library
+```{r setup, include = FALSE}
+library(ggplot2)
+library(moderndive)
+```
+## Load dataset
+```{r}
+data("early_january_weather")
+```
