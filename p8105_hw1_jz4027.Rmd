@@ -19,3 +19,9 @@ library(moderndive)
 ```{r}
 data("early_january_weather")
 ```
+## short description of the dataset
+This dataset has `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns.  
+Variables include: `r paste(names(early_january_weather), collapse = ", ")`. 
+The mean temperature is `r mean(early_january_weather$temp, na.rm = TRUE)` °F.
+
+
