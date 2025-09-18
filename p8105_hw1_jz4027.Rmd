@@ -5,30 +5,50 @@ date: "2025-09-17"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # Problem 1
+```{r}
 ##Load needed library
-```{r setup, include = FALSE}
 library(ggplot2)
 library(moderndive)
 ```
-## Load dataset
+### Load dataset
 ```{r}
 data("early_january_weather")
 ```
-## short description of the dataset
+### Short description of the dataset
 This dataset has `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns.  
 Variables include: `r paste(names(early_january_weather), collapse = ", ")`. 
-The mean temperature is `r mean(early_january_weather$temp, na.rm = TRUE)` °F.
-## ggplot and ggsave
+The mean temperature is `r mean(early_january_weather$temp, na.rm = TRUE)` F.
+
+### ggplot and ggsave
 ```{r}
 ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid)) + geom_point() + labs(x = "Time_hour", y = "Temprature")
 ggsave("p1_scatterplot.pdf", height = 4, width = 6)
 ```
-## Patterns of the scatterplot
+### Patterns of the scatterplot
 * The temperature has an overall increasing trend from early January to mid January
 * Temperature increases during daytime and decreases at night, a repeating daily cycle. 
-* The color of humidity is generally darker in early January (lower humidity), and lighter in mid January (higher humidity).  
+* The color of humidity is generally darker in early January (lower humidity), and lighter in mid January (higher humidity).
+
+
+# Problem 2
+```{r}
+library(tidyverse)
+
+# Create a data frame
+p2_df = tibble(
+  norm_samp = rnorm(10),
+  log_vec = norm_samp > 0,
+  char_vec = c("ab","cd","e","fgh","i","j","k","lmn","o","p"),
+  factor_vec = factor(c("Level_1","Level_2","Level_3","Level_2","Level_2","Level_3","Level_1","Level_1","Level_2","Level_3"))
+)
+
+# Calculate the mean
+mean_norm_samp = mean(pull(p2_df, norm_samp))
+mean_log_vec = mean(pull(p2_df, log_vec))
+mean_char_vec = mean(pull(p2_df, char_vec))
+mean_factor_vec = mean(pull(p2_df, factor_vec))
+``` 
+* The mean of a random sample of size 10 from a standard Normal distribution is `r round(mean_norm_samp, digits = 2)`. The mean of a logical vector indicating whether elements of the sample are greater than 0 is `r round(mean_log_vec, digits = 2)`. The mean of a character vector of length 10 is `r mean_char_vec`. The mean of a factor vector of length 10, with 3 different factor “levels” is `r mean_char_vec`.
+* The first two works because they are numeric variables (Logic vector: TRUE=1, FALSE=0). The last two do not work because they are character and factor variables. 
+
