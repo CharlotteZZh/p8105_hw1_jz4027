@@ -23,9 +23,12 @@ data("early_january_weather")
 This dataset has `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns.  
 Variables include: `r paste(names(early_january_weather), collapse = ", ")`. 
 The mean temperature is `r mean(early_january_weather$temp, na.rm = TRUE)` °F.
-## ggplot
+## ggplot and ggsave
 ```{r}
 ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid)) + geom_point() + labs(x = "Time_hour", y = "Temprature")
 ggsave("p1_scatterplot.pdf", height = 4, width = 6)
 ```
-
+## Patterns of the scatterplot
+* The temperature has an overall increasing trend from early January to mid January
+* Temperature increases during daytime and decreases at night, a repeating daily cycle. 
+* The color of humidity is generally darker in early January (lower humidity), and lighter in mid January (higher humidity).  
