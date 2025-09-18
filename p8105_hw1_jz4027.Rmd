@@ -34,6 +34,7 @@ ggsave("p1_scatterplot.pdf", height = 4, width = 6)
 # Problem 2
 ```{r}
 library(tidyverse)
+set.seed(1)
 
 # Create a data frame
 p2_df = tibble(
@@ -49,6 +50,11 @@ mean_log_vec = mean(pull(p2_df, log_vec))
 mean_char_vec = mean(pull(p2_df, char_vec))
 mean_factor_vec = mean(pull(p2_df, factor_vec))
 ``` 
-* The mean of a random sample of size 10 from a standard Normal distribution is `r round(mean_norm_samp, digits = 2)`. The mean of a logical vector indicating whether elements of the sample are greater than 0 is `r round(mean_log_vec, digits = 2)`. The mean of a character vector of length 10 is `r mean_char_vec`. The mean of a factor vector of length 10, with 3 different factor “levels” is `r mean_char_vec`.
-* The first two works because they are numeric variables (Logic vector: TRUE=1, FALSE=0). The last two do not work because they are character and factor variables. 
+* The mean of a random sample of size 10 from a standard Normal distribution is `r round(mean_norm_samp, digits = 2)`. The mean of a logical vector indicating whether elements of the sample are greater than 0 is `r mean_log_vec`. The mean of a character vector of length 10 is `r mean_char_vec`. The mean of a factor vector of length 10, with 3 different factor “levels” is `r mean_char_vec`.
+* The first one works because it is a numeric variable. The second one is a logical variable, works because TRUE=1 and FALSE=0. The last two do not work because they are character and factor variables. 
 
+```{r, echo=TRUE, results="hide"}
+as.numeric(pull(p2_df, log_vec))
+as.numeric(pull(p2_df, char_vec))
+as.numeric(pull(p2_df, factor_vec))
+```
