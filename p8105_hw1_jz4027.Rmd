@@ -51,10 +51,14 @@ mean_char_vec = mean(pull(p2_df, char_vec))
 mean_factor_vec = mean(pull(p2_df, factor_vec))
 ``` 
 * The mean of a random sample of size 10 from a standard Normal distribution is `r round(mean_norm_samp, digits = 2)`. The mean of a logical vector indicating whether elements of the sample are greater than 0 is `r mean_log_vec`. The mean of a character vector of length 10 is `r mean_char_vec`. The mean of a factor vector of length 10, with 3 different factor “levels” is `r mean_char_vec`.
-* The first one works because it is a numeric variable. The second one is a logical variable, works because TRUE=1 and FALSE=0. The last two do not work because they are character and factor variables. 
+* The first one works because it is a numeric variable. The second one is a logical variable, and it works because TRUE=1 and FALSE=0. The last two do not work because they are character and factor variables. 
 
 ```{r, echo=TRUE, results="hide"}
 as.numeric(pull(p2_df, log_vec))
 as.numeric(pull(p2_df, char_vec))
 as.numeric(pull(p2_df, factor_vec))
 ```
+* After converting with as.numeric(), the logical vector becomes 0s and 1s because TRUE = 1 and FALSE = 0. The mean is simply the proportion of TRUEs, which is why we were able to compute it directly even without explicit conversion. 
+* The character vector becomes a bunch of NAs after converting since letters/words cannot be interpreted as numeric values. And this is why we got NA for the mean. 
+* The factor vector becomes numbers 1, 2, 3 after converting. These numbers are the underlying integer code each level represent, not real data values. We got NA for the mean before converting because R does not automatically treat them as numeric values.
+
