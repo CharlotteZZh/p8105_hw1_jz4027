@@ -17,8 +17,19 @@ data("early_january_weather")
 ```
 ### Short description of the dataset
 This dataset has `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns.  
-Variables include: `r paste(names(early_january_weather), collapse = ", ")`. 
+
 The mean temperature is `r mean(early_january_weather$temp, na.rm = TRUE)` F.
+
+Variables include: `r paste(names(early_january_weather), collapse = ", ")`.
+
+Values (ranges) of some important variables:
+
+* The variable `temp` ranges from `r min(early_january_weather$temp, na.rm = TRUE)` to `r max(early_january_weather$temp, na.rm = TRUE)`.
+* The variable `dewp` ranges from `r min(early_january_weather$dewp, na.rm = TRUE)` to `r max(early_january_weather$dewp, na.rm = TRUE)`.
+* The variable `wind_speed` ranges from `r min(early_january_weather$wind_speed, na.rm = TRUE)` to `r max(early_january_weather$wind_speed, na.rm = TRUE)`.
+* The variable `pressure` ranges from `r min(early_january_weather$pressure, na.rm = TRUE)` to `r max(early_january_weather$pressure, na.rm = TRUE)`.
+* The variable `wind_dir` ranges from `r min(early_january_weather$wind_dir, na.rm = TRUE)` to `r max(early_january_weather$wind_dir, na.rm = TRUE)`.
+
 
 ### ggplot and ggsave
 ```{r}
